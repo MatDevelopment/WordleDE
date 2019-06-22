@@ -12,8 +12,15 @@ class WordListViewController: UITableViewController {
 
     var itemArray = ["Essentials", "Lesson1", "Lesson2"]
     
+    let defaults = UserDefaults.standard
+    //place where you store key value pairs for your app
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let items = defaults.array(forKey: "WordListArray") as? [String] {
+            itemArray = items
+        }
     }
     
     //MARK - TableView Data Source Methods - hard coded items
@@ -59,6 +66,8 @@ class WordListViewController: UITableViewController {
             // what will happen once the user clicks the add new word
         
             self.itemArray.append(textField.text!)
+            
+            self.defaults.set(self.itemArray, forKey: "WordListArray")
             
             self.tableView.reloadData()
         }

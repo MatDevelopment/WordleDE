@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA6EF80022BEA09D00AF20DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EF7FF22BEA09D00AF20DB /* AppDelegate.swift */; };
-		FA6EF80222BEA09D00AF20DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EF80122BEA09D00AF20DB /* ViewController.swift */; };
+		FA6EF80222BEA09D00AF20DB /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EF80122BEA09D00AF20DB /* WordListViewController.swift */; };
 		FA6EF80522BEA09D00AF20DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6EF80322BEA09D00AF20DB /* Main.storyboard */; };
 		FA6EF80722BEA09E00AF20DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6EF80622BEA09E00AF20DB /* Assets.xcassets */; };
 		FA6EF80A22BEA09E00AF20DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6EF80822BEA09E00AF20DB /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		FA6EF7FC22BEA09D00AF20DB /* WordleDE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordleDE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6EF7FF22BEA09D00AF20DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA6EF80122BEA09D00AF20DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA6EF80122BEA09D00AF20DB /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
 		FA6EF80422BEA09D00AF20DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA6EF80622BEA09E00AF20DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA6EF80922BEA09E00AF20DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6EF7FF22BEA09D00AF20DB /* AppDelegate.swift */,
-				FA6EF80122BEA09D00AF20DB /* ViewController.swift */,
+				FA6EF80122BEA09D00AF20DB /* WordListViewController.swift */,
 				FA6EF80322BEA09D00AF20DB /* Main.storyboard */,
 				FA6EF80622BEA09E00AF20DB /* Assets.xcassets */,
 				FA6EF80822BEA09E00AF20DB /* LaunchScreen.storyboard */,
@@ -135,7 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6EF80222BEA09D00AF20DB /* ViewController.swift in Sources */,
+				FA6EF80222BEA09D00AF20DB /* WordListViewController.swift in Sources */,
 				FA6EF80022BEA09D00AF20DB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

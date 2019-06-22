@@ -10,7 +10,7 @@ import UIKit
 
 class WordListViewController: UITableViewController {
 
-    let itemArray = ["Essentials", "Lesson1", "Lesson2"]
+    var itemArray = ["Essentials", "Lesson1", "Lesson2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,32 @@ class WordListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    // MARK - Add new items
+    //When user presses plus there is a text field
 
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        // this text field is accessible throught entire IBaction
+        
+        let alert = UIAlertController(title: "Add a new word", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add word", style: .default) { (action) in
+            // what will happen once the user clicks the add new word
+        
+            self.itemArray.append(textField.text!)
+            
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new word or phrase"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 

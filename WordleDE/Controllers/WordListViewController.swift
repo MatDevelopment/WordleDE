@@ -10,15 +10,28 @@ import UIKit
 
 class WordListViewController: UITableViewController {
 
-    var itemArray = ["Essentials", "Lesson1", "Lesson2"]
+    var itemArray = [Item]()
     
     let defaults = UserDefaults.standard
     //place where you store key value pairs for your app
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let newItem = Item()
+        newItem.title = "Lesson1"
+        itemArray.append(newItem)
         
-        if let items = defaults.array(forKey: "WordListArray") as? [String] {
+        let newItem2 = Item()
+        newItem2.title = "Lesson2"
+        itemArray.append(newItem2)
+        
+        let newItem3 = Item()
+        newItem3.title = "Lesson3"
+        itemArray.append(newItem3)
+   
+        // when our app loads we pull this array
+        if let items = defaults.array(forKey: "WordListArray") as? [Item] {
             itemArray = items
         }
     }
@@ -32,7 +45,16 @@ class WordListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordItemCell", for: indexPath)
         
-        cell.textLabel?.text = itemArray[indexPath.row]
+        let item = itemArray[indexPath.row]
+        
+        cell.textLabel?.text = item.title
+        
+        //ternary operator
+        // value = condition ? valueIfTrue : valueIfFalse
+        // used to shorten if statements
+        
+        cell.accessoryType = item.done ? .checkmark : .none
+        // => if true then set to checkmark if not true then none
         
         return cell
     }
@@ -40,13 +62,11 @@ class WordListViewController: UITableViewController {
     // MARK - TableView Delegate Method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print(itemArray[indexPath.row])
-                
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-
-        }
+        
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        // ! means "is opposite to"
+        
+        tableView.reloadData()
 
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -65,9 +85,12 @@ class WordListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add word", style: .default) { (action) in
             // what will happen once the user clicks the add new word
         
-            self.itemArray.append(textField.text!)
+            let newItem = Item()   // we create new item
+            newItem.title = textField.text!      //we set it's title property
             
-            self.defaults.set(self.itemArray, forKey: "WordListArray")
+            self.itemArray.append(newItem)  // we pend the item to our item array
+            
+            self.defaults.set(self.itemArray, forKey: "WordListArray")  //we set to our defaults
             
             self.tableView.reloadData()
         }

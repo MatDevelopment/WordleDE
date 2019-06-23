@@ -12,28 +12,20 @@ class WordListViewController: UITableViewController {
 
     var itemArray = [Item]()
     
-    let defaults = UserDefaults.standard
+    // we create a file path to the documents folder. FileManager is a singleton
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Words.plist")
+    
+    // let defaults = UserDefaults.standard
     //place where you store key value pairs for your app
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let newItem = Item()
-        newItem.title = "Lesson1"
-        itemArray.append(newItem)
+       print(dataFilePath)
         
-        let newItem2 = Item()
-        newItem2.title = "Lesson2"
-        itemArray.append(newItem2)
-        
-        let newItem3 = Item()
-        newItem3.title = "Lesson3"
-        itemArray.append(newItem3)
+        loadItems()
    
-        // when our app loads we pull this array
-        if let items = defaults.array(forKey: "WordListArray") as? [Item] {
-            itemArray = items
-        }
+    
     }
     
     //MARK - TableView Data Source Methods - hard coded items
@@ -66,8 +58,7 @@ class WordListViewController: UITableViewController {
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         // ! means "is opposite to"
         
-        tableView.reloadData()
-
+        saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -90,9 +81,7 @@ class WordListViewController: UITableViewController {
             
             self.itemArray.append(newItem)  // we pend the item to our item array
             
-            self.defaults.set(self.itemArray, forKey: "WordListArray")  //we set to our defaults
-            
-            self.tableView.reloadData()
+            self.saveItems()
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new word or phrase"
@@ -104,5 +93,32 @@ class WordListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // Model Manipulation Methods
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("error encoding item array")
+        }
+        
+        // self.defaults.set(self.itemArray, forKey: "WordListArray")  //we set to our defaults
+        
+        self.tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            do {
+            itemArray = try decoder.decode([Item].self, from: data)
+                //([Item].self, from: data)
+            } catch {
+                print ("sth")
+            }
+        }
+    }
 }
-

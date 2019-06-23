@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Item{
+// we need to write Encodable since it means that our word/item can encode itself to plist or json
+class Item: Codable {
     var title: String = ""
     var done: Bool = false
 }
